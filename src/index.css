@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+
+
+
+/* <i class="fas fa-house-user"></i> Shelter */
+/* <i class="fas fa-female"></i> Individual */
+/* <i class="fas fa-briefcase"></i> Business */
+/* <i class="fas fa-graduation-cap"></i> Courses */
+/* <i class="far fa-calendar-check"></i> Events */
+/* <i class="fas fa-question"></i> Other */
+
+
+
+:root {
+    --white-color: #f4f4f4;
+    --dark-color: #343434;
+    --dark-color-muted: #474747;
+    --grey-color: #f5f2ef;
+    --primary-color: #eea489;
+    --primary-color-muted: #dbb5a2;
+    --secondary-color: #0d4d4f;
+    --main-font: 'Patua One', cursive;
+    --secondary-font: tahoma;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: var(--primary-font);
+    background-color: var(--white-color);
+    /* line-height: 1.7em; */
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    padding-bottom: 20px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+
+
+
+/* button:hover {
+    background-color: green;
+} */
+

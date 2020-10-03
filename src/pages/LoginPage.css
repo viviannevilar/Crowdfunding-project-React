@@ -1,0 +1,15 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    /* background: url('../images/pexels-fotografierende-3150553.jpg') no-repeat center center/cover; */
+    line-height: 1.8;
+    height: 100vh;
+    position: relative;
+    color: #fff;
+  }
+
+
+#form-container {
+    margin: 30px auto;
+    max-width: 400px;
+    padding: 20px;
+  }

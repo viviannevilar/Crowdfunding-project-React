@@ -1,0 +1,25 @@
+#project-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+.wrapper {
+    padding-top: 100px;
+}
+
+
+header {
+    background: var(--dark-color);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: var(--main-font);
+    color: var(--primary-color-muted);
+    z-index:1000;
+}
+
+header h1 {
+    letter-spacing: 3px;
+}
