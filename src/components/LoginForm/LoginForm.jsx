@@ -49,7 +49,8 @@ function LoginForm() {
 
         if (response.token != null) {
            //handleLoginClick
-           history.push("/");
+           history.goBack()
+           //history.push("/");
            
         } else if (response.non_field_errors) {
             console.log(response.non_field_errors)

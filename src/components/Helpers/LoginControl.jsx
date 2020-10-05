@@ -6,9 +6,11 @@ function LoginControl () {
     const history = useHistory();
     const location = useLocation();
     const [isLoggedIn, setIsLoggedIn] = useState(false)
- 
+    
+    
     function handleLoginClick() {
         history.push("/login/")
+
     }
   
     function handleLogoutClick() {
@@ -19,7 +21,10 @@ function LoginControl () {
     
     useEffect(() => {
         const token = window.localStorage.getItem("token");
+       
+        //changeUsername(loggedInUser)
         token != null ? setIsLoggedIn(true) : setIsLoggedIn(false);
+
     }, [location]);
 
     let button;

@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
-import { Link } from "react-router-dom"
+//import { Link } from "react-router-dom"
 import "./App.css"
-//import Nav from "./components/Nav/Nav"
+import Nav from "./components/Nav/Nav"
 import ProjectPage from "./pages/ProjectPage"
 import HomePage from "./pages/HomePage"
 //import Header from "./components/Header/Header"
@@ -27,13 +27,8 @@ function App() {
                 <br></br>
                 <br></br>
                 <header>
-                    <h1>gofundshe</h1>
-                    <nav>
-                        <Link to="/">Home</Link>
-                        <Link to="/project">Project</Link>
-                        <LoginControl />
-                        <p>{username}</p>
-                </nav>
+                    <h1>go fund she</h1>
+                    <Nav username={username} />
                 </header>
 
                 <br></br>

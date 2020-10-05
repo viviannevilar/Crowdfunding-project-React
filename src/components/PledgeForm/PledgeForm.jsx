@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+//import { useHistory } from "react-router-dom";
 //import "./NewProjectForm.css"
 
 function PledgeForm(props) {
@@ -14,7 +14,10 @@ function PledgeForm(props) {
     });
 
     const [errorMessage, setErrorMessage] = useState(null)
-    const history = useHistory();
+
+    const [allOk, setAllOk] = useState(false)
+
+    //const history = useHistory();
 
     //methods
     const handleChange = (e) => {
@@ -36,15 +39,23 @@ function PledgeForm(props) {
             }));
       }
 
-    const onChangeValue = (event) => {
-        const { id, value } = event.target
-        console.log(event.target.valueAsNumber)
-        console.log(event.target)
-        setPledgeData((prevPledgeData) => ({
-            ...prevPledgeData,
-            [id]: value,
-            }));
-    }
+    // const onChangeValue = (event) => {
+    //     const { id, value } = event.target
+    //     console.log(event.target.valueAsNumber)
+    //     console.log(event.target)
+    //     setPledgeData((prevPledgeData) => ({
+    //         ...prevPledgeData,
+    //         [id]: value,
+    //         }));
+    // }
+
+    useEffect(() => {
+        //console.log("All OK changed")
+        if (allOk) {
+            window.location.reload(false);
+        }
+
+    }, [allOk]);
 
     const postData = async () => {
         let token = window.localStorage.getItem("token");
@@ -61,7 +72,10 @@ function PledgeForm(props) {
             body: JSON.stringify(pledgeData),
         });
         console.log(response)
+        setAllOk(response.ok)
+        //console.log("response.ok: ",response.ok)
         return response.json();
+
     };
 
 
@@ -78,7 +92,16 @@ function PledgeForm(props) {
             console.log(pledgeData)
             postData().then((response) => {
                 console.log(response);
+                console.log("allOK: ", allOk)
+                if (!allOk) {
+                    setErrorMessage(response[Object.keys(response)[0]])
+
+                } else {
+                    window.location.reload(false);
+                    console.log("Why didn't it reload?!")
+                }
             })
+
         }
     };
 
@@ -113,17 +136,16 @@ function PledgeForm(props) {
                             checked={pledgeData.anonymous}
                             onChange={handleInputChange} />
                         <label> Anonymous</label>
-                    
                 </div>
 
-
-   
                 <button type="submit" onClick={handleSubmit}>
                     Submit
                 </button>
             </form>
-
-        {errorMessage != null ? <p>{errorMessage}</p> : null}
+            <div>
+                {errorMessage != null ? <p className="error">{errorMessage}</p> : <></>}   
+            </div>
+        {/* {errorMessage != null ? <p>{errorMessage}</p> : null} */}
         </div>
     );
     }

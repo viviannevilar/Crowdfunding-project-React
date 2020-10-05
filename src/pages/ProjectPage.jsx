@@ -23,7 +23,7 @@ function ProjectPage() {
             <h3>Created at: {projectData.date_created}</h3>
             <h3>{`Status: ${projectData.is_open}`}</h3>
             <h3>Pledges:</h3>
-                <List items={projectData.project_pledges} fallback={"No pledges"} />
+                <List items={projectData.project_pledges} fallback={"Be the first one to donate to this project!"} />
 
             <PledgeForm project_id = {id}/>
         </div>
@@ -37,11 +37,18 @@ function List({ items, fallback }) {
     if (!items || items.length === 0) {
       return fallback;
     } else {
+        
       return items.map((item, key) => {
-        return <div key={key}> ${item.amount} from {item.supporter} </div>;
+            if (item.anonymous) {
+                return <div key={key}> ${item.amount} from anonymous </div>;
+            } else {
+                return <div key={key}> ${item.amount} from {item.supporter} </div>;
+            }
+        // return <div key={key}> ${item.amount} from {(!item.anonymous) ? {item.supporter} : "anonymous"} </div>;
+
       });
     }
-  }
+  } 
 
 //solution to the .map problem found here
 //https://www.debuggr.io/react-map-of-undefined/

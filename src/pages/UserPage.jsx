@@ -2,11 +2,28 @@ import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
 function UserPage() {
+    //variables
     const [userData, setUserData] = useState({ pledges: [] });
     const { username } = useParams();
+    const thisUser = window.localStorage.getItem("username");
 
     let token = window.localStorage.getItem("token");
     
+    //methods
+
+    function pledgesData() {
+        if (thisUser === username) {
+            return (
+                <div >
+                <h3>Pledges: </h3>
+                <ListPledge items={userData.supporter_pledges} fallback={""} />
+                </div>
+            )
+        } else {
+            return null
+        }
+     }
+     
     useEffect(() => {
         const headers = token ? {
             Authorization: `Token ${token}`,
@@ -22,15 +39,23 @@ function UserPage() {
         });
     }, [username, token]);
 
+    if (userData.username === username) {
+        console.log("yay")
+        console.log(userData.username)
+        console.log("this: ", username)
+    }
+
     return (
+        
         <div>
             <h2>{userData.username}</h2>
             <h3>Created at: {userData.date_joined}</h3>
             <h3>{`Status: ${userData.bio}`}</h3>
             <h3>Projects:</h3>
-                <ListProject items={userData.owner_projects} fallback={"No projects"} />
-            <h3>Pledges:</h3>
-                <ListPledge items={userData.supporter_pledges} fallback={"No pledges"} />
+                <ListProject items={userData.owner_projects} fallback={"This user has not created any projects"} />
+            {/* <h3>{thisUser === username ? "Pledges:" : ""} </h3> */}
+                {pledgesData()}
+         
         </div>
     );
 }
@@ -60,7 +85,7 @@ function ListProject({ items, fallback }) {
     } else {
       return items.map((item, key) => {
         return (
-        <div> 
+        <div key={key}> 
             <h3>{item.project}</h3>
             <p>{item.comment}</p> 
         </div>
