@@ -11,8 +11,9 @@ import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
 import UserPage from "./pages/UserPage"
 import NewProjectPage from "./pages/NewProjectPage"
+import ProjectEditPage from "./pages/ProjectEditPage"
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
-import LoginControl from "./components/Helpers/LoginControl"
+//import LoginControl from "./components/Helpers/LoginControl"
 
 function App() {
 
@@ -33,8 +34,11 @@ function App() {
 
                 <br></br>
                 <Switch>
-                    <Route path="/project/:id/">
+                    <Route exact path="/project/:id/">
                         <ProjectPage />
+                    </Route>
+                    <Route path="/project/:id/edit/">
+                        <ProjectEditPage />
                     </Route>
                     <Route path="/login/">
                         <LoginPage />

@@ -8,7 +8,14 @@ function ProjectPage() {
     const { id } = useParams();
     
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}project/${id}`)
+        let token = window.localStorage.getItem("token");
+        fetch(`${process.env.REACT_APP_API_URL}project/${id}`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${token}`,
+            }
+        })
         .then((results) => {
             return results.json();
         })
@@ -21,6 +28,14 @@ function ProjectPage() {
         <div>
             <h2>{projectData.title}</h2>
             <h3>Created at: {projectData.date_created}</h3>
+            <h3>Goal: {projectData.goal}</h3>
+            <h3>Published: {projectData.pub_date}</h3>
+            <h3>Is open: {projectData.is_open}</h3>
+            <h3>Category: {projectData.category}</h3>
+            <h3>Duration: {projectData.duration}</h3>            
+                                    
+
+
             <h3>{`Status: ${projectData.is_open}`}</h3>
             <h3>Pledges:</h3>
                 <List items={projectData.project_pledges} fallback={"Be the first one to donate to this project!"} />
