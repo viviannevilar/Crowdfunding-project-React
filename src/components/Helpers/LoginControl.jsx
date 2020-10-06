@@ -29,9 +29,9 @@ function LoginControl () {
 
     let button;
     if (isLoggedIn) {
-        button = <LogoutButton onClick={handleLogoutClick} />;
+        button = <LogoutButton  onClick={handleLogoutClick} />;
     } else {
-        button = <LoginButton onClick={handleLoginClick} />;
+        button = <LoginButton  onClick={handleLoginClick} />;
     }
   
       return (
@@ -45,16 +45,16 @@ export default LoginControl
 
 function LoginButton(props) {
     return (
-        <button onClick={props.onClick}>
+        <a className="button-control" onClick={props.onClick}>
             Login
-        </button>
+        </a>
     );
   }
   
 function LogoutButton(props) {
     return (
-        <button onClick={props.onClick}>
+        <a className="button-control" onClick={props.onClick}>
             Logout
-        </button>
+        </a>
     );
   }

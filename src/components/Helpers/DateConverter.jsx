@@ -1,6 +1,7 @@
 
 
 function convertDateTime(isoDate) {
+
     const date = new Date(isoDate);
     const year = date.getFullYear();
     let month = date.getMonth() + 1;
@@ -14,3 +15,5 @@ function convertDateTime(isoDate) {
     const formattedDate = day + "-" + month + "-" + year;
     return formattedDate;
 }
+
+export default convertDateTime

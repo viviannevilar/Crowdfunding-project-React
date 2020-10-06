@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer"
 import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
 import UserPage from "./pages/UserPage"
+import UserUpdatePage from "./pages/UserUpdatePage"
 import NewProjectPage from "./pages/NewProjectPage"
 import ProjectEditPage from "./pages/ProjectEditPage"
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
@@ -28,7 +29,7 @@ function App() {
                 <br></br>
                 <br></br>
                 <header>
-                    <h1>go fund she</h1>
+                    
                     <Nav username={username} />
                 </header>
 
@@ -49,9 +50,13 @@ function App() {
                     <PrivateRoute path="/createproject/">
                         <NewProjectPage />
                     </PrivateRoute> 
-                    <Route path="/user/:username/">
+                    <Route path="/user/:username/edit/">
+                        <UserUpdatePage />
+                    </Route>                   
+                    <Route exact path="/user/:username/">
                         <UserPage />
                     </Route>
+
                     <Route exact path="/">
                         <HomePage />
                     </Route>

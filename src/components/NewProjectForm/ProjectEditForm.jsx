@@ -14,7 +14,13 @@ function ProjectEditForm() {
     });
 
     const { id } = useParams();
+
+    const [errorMessage, setErrorMessage] = useState(null)
+
+    //const history = useHistory();
     
+
+    //methods
     useEffect(() => {
         let token = window.localStorage.getItem("token");
         fetch(`${process.env.REACT_APP_API_URL}project/${id}`,{
@@ -34,9 +40,9 @@ function ProjectEditForm() {
         });
     }, [id]);
 
-    const [errorMessage, setErrorMessage] = useState(null)
 
-    //const history = useHistory();
+
+
 
     //methods
     const handleChange = (e) => {
@@ -96,34 +102,21 @@ function ProjectEditForm() {
         }
     };
 
-    
-    // const publishProject= async () => {
-
-    //     let token = window.localStorage.getItem("token");
- 
-    //     fetch(`${process.env.REACT_APP_API_URL}project/${id}/publish/`, {
-    //             method: "post",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 Authorization: `Token ${token}`,
-    //             },
-    //         });
-
-    //     }
-
-    const publishProject = (e) => {
+    //publish button
+    const publishProject = async (e) => {
         e.preventDefault();
         let token = window.localStorage.getItem("token");
  
-        fetch(`${process.env.REACT_APP_API_URL}project/${id}/publish/`, {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Token ${token}`,
-                },
+        const response = await fetch(`${process.env.REACT_APP_API_URL}project/${id}/publish/`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${token}`,
+            },
         });
-        console.log("blah")
 
+        console.log(response)
+        return response.json();
     }
 
 
@@ -244,7 +237,7 @@ function ProjectEditForm() {
                 <button type="submit" onClick={handleSubmit}>
                     Save Draft
                 </button>
-               {/* <button onClick={() => {if(window.confirm('Are you sure you want to publish this project? You will not be able to edit once it is published.')){publishProject()}}}>Publish</button>  */}
+               {/* <button onClick={() => {if (window.confirm('Are you sure you want to publish this project? You will not be able to edit once it is published.')){publishProject()}}}>Publish</button>  */}
                <button onClick={publishProject}>Publish</button> 
             </form>
 

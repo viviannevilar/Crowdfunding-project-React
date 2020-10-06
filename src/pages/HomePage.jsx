@@ -21,8 +21,8 @@ function HomePage() {
 
     //template
     return (
-        <div className="body">
-            <div id="showcase">
+        <div className="outer-container">
+            {/* <div id="showcase">
                 <div className="container">
                     <div className="showcase-content">
                     <h1><span className="text-primary">Empowering </span>Women</h1>
@@ -30,9 +30,9 @@ function HomePage() {
                     <a className="btn" href="about.html">About Our Mission</a>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
-            <div className="categories">
+            {/* <div className="categories">
                 <div className="category">
                     <div className="half" id="category-1">
                         <h2>Shelter</h2>
@@ -41,8 +41,7 @@ function HomePage() {
 
                     </div>
                 </div>
-            </div>
-
+            </div> */}
 
             <div className="wrapper">
                 <div id="project-list">

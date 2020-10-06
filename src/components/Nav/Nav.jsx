@@ -2,6 +2,7 @@ import React from "react"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import LoginControl from "../Helpers/LoginControl"
+import "./Nav.css"
 
 function Nav(props) {
     //variables
@@ -22,11 +23,17 @@ function Nav(props) {
 
     if (username) {
         return (
-            <nav>
-                <Link to="/">Home</Link>
-                <Link to="/createproject">Create Project</Link>
-                <LoginControl />
-                <p>{username}</p>
+            <nav id="navbar">
+                <div className="navbar-container">
+                    <h1><Link to="/">go fund she</Link></h1>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/createproject">Create Project</Link></li>
+                    <li><LoginControl /></li>
+                </ul>
+
+                {/* <p>{username}</p> */}
+                </div>
             </nav>
         )
     } else {

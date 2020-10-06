@@ -1,16 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
-
-
-
 /* <i class="fas fa-house-user"></i> Shelter */
 /* <i class="fas fa-female"></i> Individual */
 /* <i class="fas fa-briefcase"></i> Business */
 /* <i class="fas fa-graduation-cap"></i> Courses */
 /* <i class="far fa-calendar-check"></i> Events */
 /* <i class="fas fa-question"></i> Other */
-
 
 
 :root {
@@ -49,11 +45,3 @@ h1, h2, h3 {
 p {
     margin: 10px 0;
 }
-
-
-
-
-/* button:hover {
-    background-color: green;
-} */
-

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import convertDateTime from "../components/Helpers/DateConverter"
+import "./UserPage.css"
 
 function UserPage() {
     //variables
@@ -8,6 +10,9 @@ function UserPage() {
     const thisUser = window.localStorage.getItem("username");
 
     let token = window.localStorage.getItem("token");
+
+    //const userIsOwner = (username === thisUser)
+    //console.log(userIsOwner)
     
     //methods
 
@@ -15,8 +20,21 @@ function UserPage() {
         if (thisUser === username) {
             return (
                 <div >
-                <h3>Pledges: </h3>
+                <h2>Pledges: </h2>
                 <ListPledge items={userData.supporter_pledges} fallback={""} />
+                </div>
+            )
+        } else {
+            return null
+        }
+     }
+
+     function drafts() {
+        if (thisUser === username) {
+            return (
+                <div >
+                <h2>Drafts: </h2>
+                <ListDraft items={userData.owner_projects} fallback={""} />
                 </div>
             )
         } else {
@@ -39,22 +57,31 @@ function UserPage() {
         });
     }, [username, token]);
 
-    if (userData.username === username) {
-        console.log("yay")
-        console.log(userData.username)
-        console.log("this: ", username)
-    }
-
     return (
         
-        <div>
-            <h2>{userData.username}</h2>
-            <h3>Created at: {userData.date_joined}</h3>
-            <h3>{`Status: ${userData.bio}`}</h3>
-            <h3>Projects:</h3>
+        <div className="outer-container">
+            <div>
+            <div>
+                <h1>{userData.username}</h1>
+                <h3>Member since {convertDateTime(userData.date_joined)}</h3>
+                <p>{userData.bio}</p>
+            </div>
+                <img alt="" className="project-img" src={userData.pic} />
+            <div>
+                
+            </div>
+            </div>
+
+            
+            
+            <h2>Projects:</h2>
                 <ListProject items={userData.owner_projects} fallback={"This user has not created any projects"} />
+
+            {drafts()}
+
             {/* <h3>{thisUser === username ? "Pledges:" : ""} </h3> */}
                 {pledgesData()}
+
          
         </div>
     );
@@ -62,22 +89,54 @@ function UserPage() {
 
 export default UserPage;
 
+// function ListProject({ items, fallback }) {
+//     if (!items || items.length === 0) {
+//       return fallback;
+//     } else {
+//       return items.map((item, key) => {
+//         return (
+//         <div key={key}> 
+//             <h3>{item.title}</h3>
+//             <p>{item.description}</p> 
+//         </div>
+//         )
+//       });
+//     }
+//   }
+
+
+//
+
 
 function ListProject({ items, fallback }) {
     if (!items || items.length === 0) {
       return fallback;
     } else {
       return items.map((item, key) => {
-        return (
-        <div key={key}> 
-            <h3>{item.title}</h3>
-            <p>{item.description}</p> 
-        </div>
-        )
+            return (
+            <div key={key} className={` ${(item.pub_date === null) ? "dont-show" : ""}`}> 
+                <h3>{item.title}</h3>
+                <p>{item.description}</p> 
+            </div>
+            )
       });
     }
   }
 
+  function ListDraft({ items, fallback }) {
+    if (!items || items.length === 0) {
+      return fallback;
+    } else {
+      return items.map((item, key) => {
+            return (
+            <div key={key} className={` ${(item.pub_date === null) ? "" : "dont-show"}`}> 
+                <h3>{item.title}</h3>
+                <p>{item.description}</p> 
+            </div>
+            )
+      });
+    }
+  }
 
   function ListPledge({ items, fallback }) {
     if (!items || items.length === 0) {

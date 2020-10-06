@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import PledgeForm from "../components/PledgeForm/PledgeForm"
-
+import ProgressBar from "../components/Helpers/ProgressBar"
+import convertDateTime from "../components/Helpers/DateConverter"
 
 function ProjectPage() {
     const [projectData, setProjectData] = useState({ pledges: [] });
     const { id } = useParams();
-    
+
+    let completed
+
+    if (projectData.tot_donated === 0) {
+        completed = 0
+    } else {
+        completed = Math.round(projectData.goal/projectData.tot_donated)
+    }
+
     useEffect(() => {
         let token = window.localStorage.getItem("token");
         fetch(`${process.env.REACT_APP_API_URL}project/${id}`, {
@@ -24,23 +33,36 @@ function ProjectPage() {
         });
     }, [id]);
 
+    function Pledges() {
+        if (projectData.is_open) {
+            return <PledgeForm project_id = {id}/>
+        }
+    }
+
+    
+
+    
+
     return (
         <div>
             <h2>{projectData.title}</h2>
-            <h3>Created at: {projectData.date_created}</h3>
+            <h3>Created at: {convertDateTime(projectData.date_created)}</h3>
             <h3>Goal: {projectData.goal}</h3>
-            <h3>Published: {projectData.pub_date}</h3>
-            <h3>Is open: {projectData.is_open}</h3>
+            <h3>Published: {convertDateTime(projectData.pub_date)}</h3>
             <h3>Category: {projectData.category}</h3>
-            <h3>Duration: {projectData.duration}</h3>            
-                                    
+            <h3>Duration: {projectData.duration}</h3>      
+            <h3>{`Status: ${projectData.is_open}`}</h3>      
+
+            <div className="progressBarContainer">
+                <ProgressBar completed={completed} />
+            </div>
 
 
-            <h3>{`Status: ${projectData.is_open}`}</h3>
+
             <h3>Pledges:</h3>
                 <List items={projectData.project_pledges} fallback={"Be the first one to donate to this project!"} />
 
-            <PledgeForm project_id = {id}/>
+            {Pledges()}
         </div>
     );
 }

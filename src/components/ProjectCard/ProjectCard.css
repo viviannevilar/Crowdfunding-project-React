@@ -13,7 +13,7 @@
 
   }
   .project-card img {
-    /* width: 90%; */
+    max-width: 90%;
     height: 190px;
     margin: 6px;
     object-fit: cover;
