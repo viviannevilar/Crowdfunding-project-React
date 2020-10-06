@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./NewProjectForm.css"
+//import PublishButton from "../Buttons/Publish"
 
 function NewProjectForm() {
     //variables
@@ -72,6 +73,9 @@ function NewProjectForm() {
         }
     };
 
+    function confirmed() {
+        console.log("clicked")        
+       }
 
     return (
         <div className="form-wrap">
@@ -178,6 +182,7 @@ function NewProjectForm() {
                 <button type="submit" onClick={handleSubmit}>
                     Save Draft
                 </button>
+                <button onClick={() => {if(window.confirm('Delete the item?')){confirmed()}}}>Confirm dialog</button>
             </form>
 
         {errorMessage != null ? <p>{errorMessage}</p> : null}

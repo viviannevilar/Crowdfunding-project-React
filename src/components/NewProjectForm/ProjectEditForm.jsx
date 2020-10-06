@@ -57,6 +57,7 @@ function ProjectEditForm() {
             [id]: value,
             }));
     }
+    
 
     const postData = async () => {
         let token = window.localStorage.getItem("token");
@@ -94,6 +95,36 @@ function ProjectEditForm() {
             })
         }
     };
+
+    
+    // const publishProject= async () => {
+
+    //     let token = window.localStorage.getItem("token");
+ 
+    //     fetch(`${process.env.REACT_APP_API_URL}project/${id}/publish/`, {
+    //             method: "post",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 Authorization: `Token ${token}`,
+    //             },
+    //         });
+
+    //     }
+
+    const publishProject = (e) => {
+        e.preventDefault();
+        let token = window.localStorage.getItem("token");
+ 
+        fetch(`${process.env.REACT_APP_API_URL}project/${id}/publish/`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Token ${token}`,
+                },
+        });
+        console.log("blah")
+
+    }
 
 
     return (
@@ -213,6 +244,8 @@ function ProjectEditForm() {
                 <button type="submit" onClick={handleSubmit}>
                     Save Draft
                 </button>
+               {/* <button onClick={() => {if(window.confirm('Are you sure you want to publish this project? You will not be able to edit once it is published.')){publishProject()}}}>Publish</button>  */}
+               <button onClick={publishProject}>Publish</button> 
             </form>
 
         {errorMessage != null ? <p>{errorMessage}</p> : null}
