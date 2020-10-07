@@ -16,6 +16,10 @@ function UserPage() {
     
     //methods
 
+    console.log(userData.pic)
+    console.log(userData)
+
+
     function pledgesData() {
         if (thisUser === username) {
             return (
@@ -60,16 +64,17 @@ function UserPage() {
     return (
         
         <div className="outer-container">
-            <div>
-            <div>
-                <h1>{userData.username}</h1>
-                <h3>Member since {convertDateTime(userData.date_joined)}</h3>
-                <p>{userData.bio}</p>
-            </div>
-                <img alt="" className="project-img" src={userData.pic} />
-            <div>
-                
-            </div>
+            <div className="profile-info">
+                <div className="prof-container-img">
+                    <img alt="" className="profile-img" src={userData.pic} />
+                </div>
+                <div className="prof-container-info">
+                    <h1>{userData.username}</h1>
+                    <h3>Member since {convertDateTime(userData.date_joined)}</h3>
+                    <p>{userData.bio}</p>
+                </div>
+                    
+
             </div>
 
             

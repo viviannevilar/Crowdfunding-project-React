@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom"
+
 import "./NewProjectForm.css"
 //import PublishButton from "../Buttons/Publish"
+
+
 
 function NewProjectForm() {
     //variables
@@ -13,6 +17,7 @@ function NewProjectForm() {
         category: ""
     });
 
+    const history = useHistory();
     const [errorMessage, setErrorMessage] = useState(null)
 
     //const history = useHistory();
@@ -68,14 +73,18 @@ function NewProjectForm() {
             console.log("All data is there")
             console.log(projectData)
             postData().then((response) => {
-                console.log(response);
+                console.log("This response: ",response);
+                const newProjectId = response.id
+                console.log("This project id: ", newProjectId);
+                const projectPath = "/project/" + newProjectId + "/"
+                history.push(projectPath)
             })
+            
         }
+
     };
 
-    function confirmed() {
-        console.log("clicked")        
-       }
+
 
     return (
         <div className="form-wrap">
@@ -180,10 +189,10 @@ function NewProjectForm() {
                 </div>
 
                 <button type="submit" onClick={handleSubmit}>
-                    Save Draft
+                    Save
                 </button>
-                <button onClick={() => {if(window.confirm('Delete the item?')){confirmed()}}}>Confirm dialog</button>
-            </form>
+                {/* <button onClick={() => {if(window.confirm('Delete the item?')){confirmed()}}}>Confirm dialog</button> */}
+                </form>
 
         {errorMessage != null ? <p>{errorMessage}</p> : null}
         </div>

@@ -1,3 +1,23 @@
 .dont-show {
     display: none;
 }
+
+.profile-info {
+    display: flex;
+
+}
+
+.prof-container-img {
+    height: auto;
+    width: 30%;
+}
+
+.prof-container-info {
+    width: 65%;
+}
+
+.prof-container-img img {
+    object-fit: cover;
+    width: 100%;
+    
+}

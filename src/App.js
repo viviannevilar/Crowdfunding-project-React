@@ -16,8 +16,8 @@ import ProjectEditPage from "./pages/ProjectEditPage"
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 //import LoginControl from "./components/Helpers/LoginControl"
 
-function App() {
 
+function App() {
 
     const username = window.localStorage.getItem("username");
 
@@ -41,6 +41,9 @@ function App() {
                     <Route path="/project/:id/edit/">
                         <ProjectEditPage />
                     </Route>
+                    {/* <ProjectDraftRoute path="/project/:id/edit">
+                        <ProjectEditPage />
+                    </ProjectDraftRoute> */}
                     <Route path="/login/">
                         <LoginPage />
                     </Route>
