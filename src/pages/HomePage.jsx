@@ -44,13 +44,16 @@ function HomePage() {
                     </div>
                 </div>
             </div> */}
-
-            {/* <AliceCarousel autoPlay autoPlayInterval="3000">
-                <img src={image1} className="sliderimg"/>
-                <img src={image2} className="sliderimg"/>
-                <img src={image3} className="sliderimg"/>
-                <img src={image4} className="sliderimg"/>
-            </AliceCarousel> */}
+            <div id="showcase">
+            <div className="container">
+            <AliceCarousel autoPlay autoPlayInterval="3000">
+                <img src={"https://i.imgur.com/dwkOhts.jpg"} className="sliderimg"/>
+                <img src={"https://i.imgur.com/cZEW86k.jpg"} className="sliderimg"/>
+                <img src={"https://i.imgur.com/J7l9nka.jpg"} className="sliderimg"/>
+                <img src={"https://i.imgur.com/hBoDhQX.jpg"} className="sliderimg"/>
+            </AliceCarousel>
+            </div>
+            </div>
 
             <div className="wrapper">
                 <div id="project-list">

@@ -1,12 +1,20 @@
 
 
-function convertDateTime(isoDate) {
+function convertDateTime(isoDate, duration) {
 
     if (isoDate == null) {
         return null
     } else {
-        
+        if (duration == null) {
+            const dur = 0
+        } else {
+            const dur = duration
+        }
+        console.log(isoDate)
         const date = new Date(isoDate);
+
+        date.setDate(date.getDate() + duration)
+
         const year = date.getFullYear();
         let month = date.getMonth() + 1;
         let day = date.getDate();

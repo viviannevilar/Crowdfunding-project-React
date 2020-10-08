@@ -2,7 +2,7 @@ import React from "react";
 import "./ProgressBar.css"
 
 const ProgressBar = (props) => {
-    const { completed } = props;
+    const { completed, goal } = props;
   
     // const containerStyles = {
     //   height: 20,
@@ -27,10 +27,14 @@ const ProgressBar = (props) => {
     // }
   
     return (
+      <div className="outerContainerStyles">
       <div className="containerStyles">
         <div className="fillerStyles" style={fillerStyles}>
-          <span className="labelStyles">{`${completed}%`}</span>
+            <p>.</p>
+          {/* <span className="labelStyles">{`${completed}%`}</span> */}
         </div>
+      </div>
+      <p className="labelStyles">{completed}% of ${goal} goal</p>
       </div>
     );
   };

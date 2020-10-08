@@ -1,0 +1,15 @@
+.icon {
+    font-size: 30px;
+    display: block;
+}
+
+.category-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.category p {
+    /* height: 30px; */
+}

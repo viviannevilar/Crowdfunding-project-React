@@ -3,6 +3,8 @@ import { useParams, useHistory, Link } from "react-router-dom"
 import PledgeForm from "../components/PledgeForm/PledgeForm"
 import ProgressBar from "../components/Helpers/ProgressBar"
 import convertDateTime from "../components/Helpers/DateConverter"
+import "./ProjectPage.css"
+import Icons from "../components/Helpers/Icons"
 
 function ProjectPage() {
     const [projectData, setProjectData] = useState({ pledges: [] });
@@ -56,7 +58,7 @@ function ProjectPage() {
         if (projectData.is_open) {
             return (
             <div>
-            <h3>Pledges:</h3>
+            <h2 className="centered">Pledges</h2>
                 <List items={projectData.project_pledges} fallback={"Be the first one to donate to this project!"} />
             <PledgeForm project_id = {id}/>
 
@@ -102,7 +104,7 @@ function ProjectPage() {
     if (isLoading) {
         return (
             <div>
-                <img src={"https://www.dropbox.com/s/f1d134j7tbxrfol/Loading.gif?dl=0"}/>
+                <img src={"https://i.imgur.com/SJis36a.gif"}/>
             </div>
         )
     } else if (projError === 401) {
@@ -115,13 +117,23 @@ function ProjectPage() {
     } else if (projectData.pub_date === null && projectData.owner == username ) {
         return (
             <div>
-                <h1>This is a draft</h1>
-                <h2>{projectData.title}</h2>
-                <h3>Created at: {convertDateTime(projectData.date_created)}</h3>
-                <h3>Goal: {projectData.goal}</h3>
-                <h3>Published: {convertDateTime(projectData.pub_date)}</h3>
-                <h3>Category: {projectData.category}</h3>
-                <h3>Duration: {projectData.duration}</h3>      
+  
+                <h1 className="centered">{projectData.title}</h1>
+                <Icons category={projectData.category} />
+                <h2>Draft</h2>
+                <div className="project-main-info">
+                    <div className="project-img">
+                        <img alt="" src={projectData.image} />
+                    </div>
+                    <div className="project-info">
+                        <h3 className="centered">{projectData.owner}</h3>
+                        <h4>Started on {convertDateTime(projectData.pub_date, 0)}</h4>
+                        <h4>Ends on {convertDateTime(projectData.pub_date, projectData.duration)}</h4>
+                        <div className="progressBarContainer">
+                            <ProgressBar completed={completed} goal={projectData.goal}/>
+                        </div>
+                    </div>
+                </div>   
                 <h3>{`Status: ${projectData.is_open}`}</h3>      
 
                 <button onClick={() => {setPublishConfirm(true)}}>Publish</button> 
@@ -131,22 +143,29 @@ function ProjectPage() {
         )
     } else {
         return (
-            <div>
-                <h2>{projectData.title}</h2>
-                <h3>Created at: {convertDateTime(projectData.date_created)}</h3>
-                <h3>Goal: {projectData.goal}</h3>
-                <h3>Published: {convertDateTime(projectData.pub_date)}</h3>
-                <h3>Category: {projectData.category}</h3>
-                <h3>Duration: {projectData.duration}</h3>      
-                <h3>{`Status: ${projectData.is_open}`}</h3>      
-    
-                <div className="progressBarContainer">
-                    <ProgressBar completed={completed} />
+            <div className="outer-container">
+
+                <h1 className="centered">{projectData.title}</h1>     
+                <Icons category={projectData.category} />        
+                <div className="project-main-info">
+                    <div className="project-img">
+                        <img alt="" src={projectData.image} />
+                    </div>
+                    <div className="project-info">
+                        <h3 className="centered">{projectData.owner}</h3>
+                        <h3>Started on {convertDateTime(projectData.pub_date, 0)}</h3>
+                        <h3>Ends on {convertDateTime(projectData.pub_date, projectData.duration)}</h3>
+                        <div className="progressBarContainer">
+                            <ProgressBar completed={completed} goal={projectData.goal}/>
+                        </div>
+                    </div>
                 </div>
-    
-                {/* <h3>Pledges:</h3>
-                    <List items={projectData.project_pledges} fallback={"Be the first one to donate to this project!"} /> */}
-    
+                <div className="project-description">
+                    {projectData.description}
+                </div>
+
+                <h3>{`Status: ${projectData.is_open}`}</h3>      
+
                 {Pledges()}
             </div>
         );

@@ -35,5 +35,4 @@ header h1 {
 .outer-container {
     max-width: 1200px;
     margin: auto;
-    border: 1px solid red;
 }

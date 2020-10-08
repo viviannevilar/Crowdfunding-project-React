@@ -32,11 +32,14 @@ function ProjectCard(props) {
     return (
         <div className="project-card">
             <Link to={`/project/${projectData.id}`}>
-                <img alt="" className="project-img" src={image} />
+                <div className="pc-img-container">
+                    <img alt="" className="project-img" src={image} />
+                </div>
                 <h3>{projectData.title}</h3>
 
-                <ProgressBar completed={completed} />
-
+            <div className="progressBarContainer">
+                <ProgressBar completed={completed} goal={projectData.goal}/>
+              </div>
 
             </Link>
             {/* <div className="card-link"> */}
