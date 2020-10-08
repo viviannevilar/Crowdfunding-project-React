@@ -103,7 +103,7 @@ function ProjectPage() {
 
     if (isLoading) {
         return (
-            <div>
+            <div className="white-background">
                 <img src={"https://i.imgur.com/SJis36a.gif"}/>
             </div>
         )

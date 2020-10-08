@@ -28,3 +28,18 @@
     text-align: justify;
     white-space: pre-line;
 }
+
+.white-background {
+    background-color: white;
+}
+
+
+@media(max-width: 768px) {
+
+.project-main-info {
+    display:flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+}
