@@ -38,11 +38,15 @@ function Nav(props) {
         )
     } else {
         return (
-            <nav>
-                <Link to="/">Home</Link>
-                <Link to="/project">Project</Link>
-                <LoginControl />
-                {/* <p>{username}</p> */}
+            <nav id="navbar">
+                <div className="navbar-container">
+                    <h1><Link to="/">go fund she</Link></h1>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><LoginControl /></li>
+                            {/* <p>{username}</p> */}
+                    </ul>
+                </div>
             </nav>
         )
     }

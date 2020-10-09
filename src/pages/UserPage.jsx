@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import convertDateTime from "../components/Helpers/DateConverter"
+import DeleteConfirm from "../components/Helpers/DeleteConfirm"
 import "./UserPage.css"
 
 function UserPage() {
@@ -8,6 +9,7 @@ function UserPage() {
     const [userData, setUserData] = useState({ pledges: [] });
     const { username } = useParams();
     const thisUser = window.localStorage.getItem("username");
+    const [noUser, setNoUser] = useState(false)
 
     let token = window.localStorage.getItem("token");
 
@@ -24,8 +26,8 @@ function UserPage() {
         if (thisUser === username) {
             return (
                 <div >
-                <h2>Pledges: </h2>
-                <ListPledge items={userData.supporter_pledges} fallback={""} />
+                <h2 className="centered">Pledges</h2>
+                <ListPledge items={userData.supporter_pledges} fallback={<p className="centered">You have made no pledges so far</p>} />
                 </div>
             )
         } else {
@@ -37,8 +39,8 @@ function UserPage() {
         if (thisUser === username) {
             return (
                 <div >
-                <h2>Drafts: </h2>
-                <ListDraft items={userData.owner_projects} fallback={""} />
+                <h2 className="centered">Drafts</h2>
+                <ListDraft items={userData.owner_projects} fallback={<p className="centered">No drafts to show</p>} />
                 </div>
             )
         } else {
@@ -54,6 +56,10 @@ function UserPage() {
             headers
          })
         .then((results) => {
+            if (results.status === 404) {
+                setNoUser(true)
+                console.log("setNoUser = true")
+            }
             return results.json();
         })
         .then((data) => {
@@ -61,35 +67,45 @@ function UserPage() {
         });
     }, [username, token]);
 
-    return (
-        
-        <div className="outer-container">
-            <div className="profile-info">
-                <div className="prof-container-img">
-                    <img alt="" className="profile-img" src={userData.pic} />
-                </div>
-                <div className="prof-container-info">
-                    <h1>{userData.username}</h1>
-                    <h3>Member since {convertDateTime(userData.date_joined)}</h3>
-                    <p>{userData.bio}</p>
+
+    if (noUser === true) {
+        return (
+            <div className="blankPage">
+                <h1>This user doesn't exist</h1>
+            </div>
+        )
+    } else {
+        return (
+            <div className="outer-container">
+                <h1 className="centered">{userData.username}</h1>
+
+                <div className="centered mb-20">
+                    <DeleteConfirm id = {username} type="user" />
+                    <button>Create Project</button>
                 </div>
                     
-
-            </div>
-
+                <div className="profile-info mt-20">
+                    <div className="prof-container-img">
+                        <img alt="" className="profile-img" src={userData.pic} />
+                    </div>
+                    <div className="prof-container-info">
+                        <h3 className="centered">Member since {convertDateTime(userData.date_joined,0)}</h3>
+                        <p>{userData.bio}</p>
+                    </div>
+                </div>       
             
             
-            <h2>Projects:</h2>
-                <ListProject items={userData.owner_projects} fallback={"This user has not created any projects"} />
+            <h2 className="centered">Projects</h2>
+                <ListProject items={userData.owner_projects} fallback={<p className="centered">No projects to show</p>} />
 
             {drafts()}
 
-            {/* <h3>{thisUser === username ? "Pledges:" : ""} </h3> */}
-                {pledgesData()}
+            {pledgesData()}
 
          
         </div>
     );
+}
 }
 
 export default UserPage;

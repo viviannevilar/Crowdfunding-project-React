@@ -20,6 +20,19 @@
     box-sizing: border-box;
 }
 
+/* Bootstrap-like classes */
+.centered {text-align: center;}
+
+.margin-10 {margin: 10px;}
+.mr-10 {margin-right: 10px;}
+.mb-10 {margin-bottom: 10px;}
+.mt-10 {margin-top: 10px;}
+.mb-20 {margin-bottom: 20px;}
+.mt-20 {margin-top: 20px;}
+
+
+
+
 html, body {
     font-family: var(--primary-font);
     background-color: var(--white-color);
@@ -42,10 +55,3 @@ p {
 
 
 
-.centered {
-    text-align: center;
-}
-
-.margin-10 {
-    margin: 10px;
-}

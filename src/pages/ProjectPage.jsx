@@ -114,7 +114,6 @@ function ProjectPage() {
     } else if (projectData.pub_date === null && projectData.owner == username ) {
         return (
             <div>
-  
                 <h1 className="centered">{projectData.title}</h1>
                 <Icons category={projectData.category} />
                 <h2 className="centered error">Preview</h2>
@@ -138,7 +137,7 @@ function ProjectPage() {
 
 
                 <PublishConfirm id = {id} />
-                <DeleteConfirm id = {id} />
+                <DeleteConfirm id = {id} type="project" />
 
              </div>
         )
