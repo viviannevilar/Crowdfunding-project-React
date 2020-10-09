@@ -36,3 +36,22 @@ header h1 {
     max-width: 1200px;
     margin: auto;
 }
+
+.error {
+    font-weight: bold;
+    font-size: 2em;
+    background-color: red;
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 0;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: #49c1a2;
+    color: #fff;
+    cursor: pointer;
+}

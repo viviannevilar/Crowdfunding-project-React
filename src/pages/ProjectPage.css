@@ -33,7 +33,43 @@
     background-color: white;
 }
 
+.pledges-outer-wrapper {
+    border: 1px solid var(--dark-color);
+    border-radius: 5px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
 
+.pledge-wrapper {
+    width: 400px;
+    border-bottom: 1px solid gray;
+    margin: 0 auto;
+    padding-top: 5px;
+}
+
+
+.pledge-wrapper:first-of-type {
+   border-top: 1px solid gray;
+}
+
+
+.blankPage {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blankPage h1 {
+
+}
+
+
+
+
+
+/* --------------------------------------------------------------------- */
 @media(max-width: 768px) {
 
 .project-main-info {
@@ -47,7 +83,8 @@
 }
 
 .project-img {
-    width: 90%;
+    width: 95%;
+    margin: 0 auto;
 }
 
 }

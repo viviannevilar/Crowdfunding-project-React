@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //import { useHistory } from "react-router-dom";
-//import "./NewProjectForm.css"
+import "./PledgeForm.css"
 
 function PledgeForm(props) {
     //variables
@@ -102,12 +102,15 @@ function PledgeForm(props) {
                 }
             })
 
+        } else {
+            console.log("not all data was there")
+            setErrorMessage("You need to add a comment!")
         }
     };
 
 
     return (
-        <div className="form-wrap">
+        <div className="form-wrap pledge-form-wrap">
             <form>
                 <div className="form-group">
                     <label htmlFor="amount">Amount</label>
