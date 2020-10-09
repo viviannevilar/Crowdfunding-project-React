@@ -10,7 +10,6 @@ function convertDateTime(isoDate, duration) {
         } else {
             const dur = duration
         }
-        console.log(isoDate)
         const date = new Date(isoDate);
 
         date.setDate(date.getDate() + duration)

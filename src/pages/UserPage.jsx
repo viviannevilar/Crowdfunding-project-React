@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import convertDateTime from "../components/Helpers/DateConverter"
 import DeleteConfirm from "../components/Helpers/DeleteConfirm"
 import ProjectCard from "../components/ProjectCard/ProjectCard"
@@ -14,20 +14,13 @@ function UserPage() {
 
     let token = window.localStorage.getItem("token");
 
-    //const userIsOwner = (username === thisUser)
-    //console.log(userIsOwner)
-    
+   
     //methods
-
-    console.log(userData.pic)
-    console.log(userData)
-
-
     function pledgesData() {
         if (thisUser === username) {
             return (
-                <div >
-                <h2 className="centered ">Pledges</h2>
+                <div className="pledges-profile centered">
+                <h2 className="centered mt-20">Pledges</h2>
                 <ListPledge items={userData.supporter_pledges} fallback={<p className="centered">You have made no pledges so far</p>} />
                 </div>
             )
@@ -40,7 +33,7 @@ function UserPage() {
         if (thisUser === username) {
             return (
                 <div >
-                    <h2 className="centered">Drafts</h2>
+                    <h2 className="centered mt-20">Drafts</h2>
                     <div className="project-list">
                         <ListDraft items={userData.owner_projects} fallback={<p className="centered">No drafts to show</p>} />
                     </div>
@@ -61,7 +54,6 @@ function UserPage() {
         .then((results) => {
             if (results.status === 404) {
                 setNoUser(true)
-                console.log("setNoUser = true")
             }
             return results.json();
         })
@@ -82,16 +74,18 @@ function UserPage() {
             <div className="outer-container">
                 <h1 className="centered">{userData.username}</h1>
 
-                <div className="centered mb-20">
+                <div className="centered buttons">
+
+                    <Link to={`/user/${username}/edit/`}><button className="mr-10 btn-small">Edit Profile</button></Link>
                     <DeleteConfirm id = {username} type="user" />
-                    <button>Create Project</button>
+
                 </div>
                     
-                <div className="profile-info mt-20">
+                <div className="profile-info mt-20 pad-lr-30">
                     <div className="prof-container-img">
                         <img alt="" className="profile-img" src={userData.pic} />
                     </div>
-                    <div className="prof-container-info">
+                    <div className="prof-container-info pad-lr-30">
                         <h3 className="centered">Member since {convertDateTime(userData.date_joined,0)}</h3>
                         <p>{userData.bio}</p>
                     </div>
@@ -102,7 +96,7 @@ function UserPage() {
                 <ListProject items={userData.owner_projects} fallback={<p className="centered">No projects to show</p>} /> */}
 
                 <div className="wrapper">
-                    <h2 className="centered">Projects</h2>
+                    <h2 className="centered mt-20">Projects</h2>
                     <div className="project-list">
                     <ListProject items={userData.owner_projects} fallback={<p className="centered">No projects to show</p>} /> 
                     </div>
@@ -155,9 +149,10 @@ function ListProject({ items, fallback }) {
     } else {
       return items.map((item, key) => {
         return (
-        <div key={key}> 
-            <h3>{item.project}</h3>
-            <p>{item.comment}</p> 
+        <div key={key} className="one-pledge"> 
+
+
+        <p>Donated ${item.amount} to <Link to={`/project/${item.project}/`}>Project {item.project}</Link> with the comment "{item.comment}"</p>
         </div>
         )
       });

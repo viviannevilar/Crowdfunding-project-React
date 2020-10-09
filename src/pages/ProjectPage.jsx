@@ -28,7 +28,7 @@ function ProjectPage() {
     if (projectData.tot_donated === 0) {
         completed = 0
     } else {
-        completed = Math.round(projectData.goal/projectData.tot_donated)
+        completed = Math.round((projectData.tot_donated / projectData.goal)*100)
     }
 
     useEffect(() => {
@@ -43,10 +43,8 @@ function ProjectPage() {
         })
         .then((results) => {
             setProjError(results.status)
-            console.log(results.status)
             if (results.status === 404) {
                 setNoProject(true)
-                console.log("setNoProject = true")
             }
             return results.json();
         })
@@ -86,9 +84,7 @@ function ProjectPage() {
     
     function handleEdit() {
         const myLink = "/project/" + {id} + "/edit/"
-        console.log("handle edit");
-        
-        // history.push(myLink)
+     
      };
 
 
@@ -115,7 +111,7 @@ function ProjectPage() {
     } else if (projectData.pub_date === null && projectData.owner == username ) {
         return (
             <div>
-                <h1 className="centered">{projectData.title}</h1>
+                <h1 className="centered h1-background">{projectData.title}</h1>
                 <Icons category={projectData.category} />
                 <h2 className="centered error">Preview</h2>
                 <div className="project-main-info">
@@ -146,7 +142,7 @@ function ProjectPage() {
         return (
             <div className="outer-container">
 
-                <h1 className="centered">{projectData.title}</h1>     
+                <h1 className="centered h1-background">{projectData.title}</h1>     
                 <Icons category={projectData.category} />        
                 <div className="project-main-info">
                     <div className="project-img">
@@ -185,15 +181,15 @@ function List({ items, fallback }) {
       return items.map((item, key) => {
             if (item.anonymous) {
                 return (
-                    <div className="pledge-wrapper">
-                        <div key={key}> ${item.amount} from anonymous </div>
+                    <div key={key} className="pledge-wrapper">
+                        <div > ${item.amount} from anonymous </div>
                         <p>{item.comment}</p>
                     </div>
                 )
             } else {
                 return (
-                    <div className="pledge-wrapper">
-                        <div key={key}> ${item.amount} from {item.supporter} </div>
+                    <div key={key} className="pledge-wrapper">
+                        <div > ${item.amount} from {item.supporter} </div>
                         <p>{item.comment}</p>
                     </div>
                 )

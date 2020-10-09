@@ -21,3 +21,14 @@
     width: 100%;
     
 }
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.one-pledge {
+    
+}

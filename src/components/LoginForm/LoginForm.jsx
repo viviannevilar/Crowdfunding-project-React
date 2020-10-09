@@ -53,7 +53,6 @@ function LoginForm() {
            //history.push("/");
            
         } else if (response.non_field_errors) {
-            console.log(response.non_field_errors)
             setErrorMessage(response.non_field_errors)
             setCredentials({password: ""})
         }

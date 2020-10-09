@@ -6,7 +6,7 @@
   }
 
 .wrapper {
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 
@@ -33,7 +33,7 @@ header h1 {
 }
 
 .outer-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: auto;
 }
 
@@ -56,3 +56,6 @@ header h1 {
     cursor: pointer;
 }
 
+.btn-small {
+    padding: 10px;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 //import "./NewProjectForm.css"
+
 
 function UserUpdateForm() {
     //variables
@@ -11,11 +12,12 @@ function UserUpdateForm() {
 
     const { username } = useParams();
 
+    const history = useHistory();
+
     const [errorMessage, setErrorMessage] = useState(null)
 
     //const history = useHistory();
-    
-
+    const linkTo = "/user/" + username + "/"
     //methods
     useEffect(() => {
         let token = window.localStorage.getItem("token");
@@ -32,7 +34,6 @@ function UserUpdateForm() {
         })
         .then((data) => {
             setUserData(data);
-            console.log(data)
         });
     }, [username]);
 
@@ -41,7 +42,6 @@ function UserUpdateForm() {
     //methods
     const handleChange = (e) => {
         const { id, value } = e.target;
-        console.log(e.target)
         setUserData((prevUserData) => ({
         ...prevUserData,
         [id]: value,
@@ -50,8 +50,7 @@ function UserUpdateForm() {
 
     const onChangeValue = (event) => {
         const { id, value } = event.target
-        console.log(event.target.valueAsNumber)
-        console.log(event.target)
+
         setUserData((prevUserData) => ({
             ...prevUserData,
             [id]: value,
@@ -61,7 +60,6 @@ function UserUpdateForm() {
 
     const postData = async () => {
         let token = window.localStorage.getItem("token");
-        console.log(token)
 
         // POST request using fetch with async/away 
         const response = await fetch(`${process.env.REACT_APP_API_URL}users/${username}/`, {
@@ -78,16 +76,15 @@ function UserUpdateForm() {
 
 
     const handleSubmit = (e) => {
-        console.log(userData);
         e.preventDefault();
         if (
             userData.bio && 
             userData.pic
         ) {
-            console.log("All data is there")
-            console.log(userData)
             postData().then((response) => {
-                console.log(response);
+                console.log("test")
+                history.push(linkTo)
+                console.log(linkTo)
             })
         }
     };
@@ -95,10 +92,7 @@ function UserUpdateForm() {
 
     return (
         <div className="form-wrap">
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+            <h1>Update Profile</h1>
             <form>
                 <div className="form-group">
                     <label htmlFor="bio">Bio</label>

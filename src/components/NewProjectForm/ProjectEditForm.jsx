@@ -36,7 +36,6 @@ function ProjectEditForm() {
         })
         .then((data) => {
             setProjectData(data);
-            console.log(data)
         });
     }, [id]);
 
@@ -44,7 +43,6 @@ function ProjectEditForm() {
     //methods
     const handleChange = (e) => {
         const { id, value } = e.target;
-        console.log(e.target)
         setProjectData((prevProjectData) => ({
         ...prevProjectData,
         [id]: value,
@@ -53,8 +51,6 @@ function ProjectEditForm() {
 
     const onChangeValue = (event) => {
         const { id, value } = event.target
-        console.log(event.target.valueAsNumber)
-        console.log(event.target)
         setProjectData((prevProjectData) => ({
             ...prevProjectData,
             [id]: value,
@@ -64,7 +60,6 @@ function ProjectEditForm() {
 
     const postData = async () => {
         let token = window.localStorage.getItem("token");
-        console.log(token)
 
         // POST request using fetch with async/away 
         const response = await fetch(`${process.env.REACT_APP_API_URL}project/${id}/`, {
@@ -75,13 +70,11 @@ function ProjectEditForm() {
             },
             body: JSON.stringify(projectData),
         });
-        console.log(response)
         return response.json();
     };
 
 
     const handleSubmit = (e) => {
-        console.log(projectData);
         e.preventDefault();
         if (
             projectData.title && 
@@ -91,30 +84,11 @@ function ProjectEditForm() {
             projectData.duration && 
             projectData.category
         ) {
-            console.log("All data is there")
-            console.log(projectData)
             postData().then((response) => {
-                console.log(response);
+                setErrorMessage("You need to complete all fields.")
             })
         }
     };
-
-    //publish button
-    // const publishProject = async (e) => {
-    //     e.preventDefault();
-    //     let token = window.localStorage.getItem("token");
- 
-    //     const response = await fetch(`${process.env.REACT_APP_API_URL}project/${id}/publish/`, {
-    //         method: "post",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             Authorization: `Token ${token}`,
-    //         },
-    //     });
-
-    //     console.log(response)
-    //     return response.json();
-    // }
 
 
     //Check whether user has permission to edit this
@@ -124,21 +98,17 @@ function ProjectEditForm() {
 
         if (owner === username)  {
             return true;
-            console.log("is owner")
         } else {
             return false;
-            console.log("is not owner")
-        }
+         }
     }
 
     //This checks whether this is a draft
     function isDraft(pub_date) {
 
         if (pub_date === null)  {
-            console.log("is draft")
             return true;
         } else {
-            console.log("is not draft")
             return false;
         }
     }
@@ -267,9 +237,6 @@ function ProjectEditForm() {
         );
 
     } else if (!isOwner(projectData.owner)) {
-
-        console.log(isOwner(projectData.owner))
-        console.log(isDraft(projectData.pub_date))
 
         return (
             <div className="blankPage">

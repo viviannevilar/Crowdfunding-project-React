@@ -22,7 +22,6 @@ function PledgeForm(props) {
     //methods
     const handleChange = (e) => {
         const { id, value } = e.target;
-        console.log(e.target)
         setPledgeData((prevPledgeData) => ({
         ...prevPledgeData,
         [id]: value,
@@ -50,8 +49,6 @@ function PledgeForm(props) {
 
     const postData = async () => {
         let token = window.localStorage.getItem("token");
-        console.log(token)
-        console.log(pledgeData)
 
         // POST request using fetch with async/away 
         const response = await fetch(`${process.env.REACT_APP_API_URL}pledges/`, {
@@ -62,7 +59,6 @@ function PledgeForm(props) {
             },
             body: JSON.stringify(pledgeData),
         });
-        console.log(response)
         setAllOk(response.ok)
         return response.json();
 
@@ -70,7 +66,6 @@ function PledgeForm(props) {
 
 
     const handleSubmit = (e) => {
-        console.log(pledgeData);
         e.preventDefault();
         if (
             pledgeData.amount && 
@@ -78,21 +73,15 @@ function PledgeForm(props) {
             // pledgeData.anonymous && 
             pledgeData.project
         ) {
-            console.log("All data is there")
-            console.log(pledgeData)
             postData().then((response) => {
-                console.log(response);
-                console.log("allOK: ", allOk)
                 if (!allOk) {
                     setErrorMessage(response[Object.keys(response)[0]])
                 } else {
                     window.location.reload(false);
-                    console.log("Why didn't it reload?!")
                 }
             })
 
         } else {
-            console.log("not all data was there")
             setErrorMessage("You need to add a comment!")
         }
     };

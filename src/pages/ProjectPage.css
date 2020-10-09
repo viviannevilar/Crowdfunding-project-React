@@ -30,7 +30,17 @@
 }
 
 .white-background {
+    height: 70vw;
+    width: 100vw;
     background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -70px;
+}
+
+img.white-background {
+
 }
 
 .pledges-outer-wrapper {
@@ -68,7 +78,14 @@
 }
 
 
+.h1-background {
+    color: var(--dark-color);
+    border-bottom: 8px solid var(--primary-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    
 
+}
 
 
 /* --------------------------------------------------------------------- */

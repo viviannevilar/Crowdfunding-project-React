@@ -11,12 +11,16 @@ function DeleteConfirm(props) {
     const [deleteConfirm, setDeleteConfirm] = useState(false)
     const history = useHistory();
 
+    let otherType
     let urlAddress
     if (type === "project") {
         urlAddress = "project/" + id 
+        otherType = "Project"
     } else {
         urlAddress = "users/" + id 
+        otherType = "Account"
     }
+
 
     //delete button
 
@@ -32,7 +36,6 @@ function DeleteConfirm(props) {
             },
         });
 
-        console.log(response)
         if (type === "user") {
             window.localStorage.clear()
         }
@@ -43,7 +46,7 @@ function DeleteConfirm(props) {
 
     return (
         <div>
-            <button className="btn" onClick={() => {setDeleteConfirm(true)}}>Delete</button> 
+            <button className="delete btn-small" onClick={() => {setDeleteConfirm(true)}}>Delete {otherType}</button> 
             {deleteConfirm && <p >Are you sure you want to delete this {type}? You won't be able to recover it once you delete it</p>}   
             {deleteConfirm && <button className="btn-50" onClick={deleteFunction}>Confirm</button>}
             {deleteConfirm && <button className="btn-50" onClick={() => {setDeleteConfirm(false)}}>Cancel</button>}

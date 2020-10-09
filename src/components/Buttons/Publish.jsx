@@ -10,7 +10,7 @@ function PublishButton() {
     // }
 
     function confirmed() {
-        console.log("clicked")        
+        
        }
     // function handleSubmit() {
     //     console.log("Submit")

@@ -23,7 +23,6 @@ function PublishConfirm(props) {
             },
         });
 
-        console.log(response)
         window.location.reload();
         return response.json();
     }

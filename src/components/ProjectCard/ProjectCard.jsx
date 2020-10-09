@@ -9,13 +9,11 @@ function ProjectCard(props) {
     let completed
     let display = false
 
-    console.log("goal: ", projectData.goal)
-    console.log("tot_donated: ", projectData.tot_donated)
     if (projectData.tot_donated === 0) {
         completed = 0
         display = true
     } else if (projectData.tot_donated != null) {
-        completed = Math.round(projectData.goal/projectData.tot_donated)
+        completed = Math.round((projectData.tot_donated / projectData.goal)*100)
         display = true
     }
 

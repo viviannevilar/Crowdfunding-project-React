@@ -21,12 +21,9 @@ function NewProjectForm() {
     const [errorMessage, setErrorMessage] = useState(null)
     const [allOk, setAllOk] = useState(false)
 
-    //const history = useHistory();
-
     //methods
     const handleChange = (e) => {
         const { id, value } = e.target;
-        console.log(e.target)
         setProjectData((prevProjectData) => ({
         ...prevProjectData,
         [id]: value,
@@ -35,8 +32,8 @@ function NewProjectForm() {
 
     const onChangeValue = (event) => {
         const { id, value } = event.target
-        console.log(event.target.valueAsNumber)
-        console.log(event.target)
+        // console.log(event.target.valueAsNumber)
+        // console.log(event.target)
         setProjectData((prevProjectData) => ({
             ...prevProjectData,
             [id]: value,
@@ -55,14 +52,12 @@ function NewProjectForm() {
             },
             body: JSON.stringify(projectData),
         });
-        console.log(response)
         setAllOk(response.ok)
         return response.json();
     };
 
 
     const handleSubmit = (e) => {
-        console.log(projectData);
         e.preventDefault();
         if (
             projectData.title && 
@@ -72,12 +67,8 @@ function NewProjectForm() {
             projectData.duration && 
             projectData.category
         ) {
-            console.log("All data is there")
-            console.log(projectData)
             postData().then((response) => {
-                console.log("This response: ",response);
                 const newProjectId = response.id
-                console.log("This project id: ", newProjectId);
                 const projectPath = "/project/" + newProjectId + "/"
                 if (!allOk) {
                     setErrorMessage(response[Object.keys(response)[0]])

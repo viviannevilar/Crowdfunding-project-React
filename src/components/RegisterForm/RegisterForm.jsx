@@ -44,30 +44,15 @@ function RegisterForm() {
     if (credentials.username && credentials.password) {
     
         postData().then((response) => {
-            console.log(response)
-            console.log(response.username)
             if (response.username === credentials.username) {
-                console.log("Success")
                 setErrorMessage("Account created successfully")
                 setCredentials({password: "", username: ""})
                 history.push("/")
 
             } else {
-                console.log("response.username " + response.username)
                 setErrorMessage(response.username)
                 setCredentials({password: "", username: ""})
             }
-            // if (response.status === 201) {
-            //     history.push("/");
-            // } else {
-            //     setErrorMessage("something went wrong")
-            //     setCredentials({password: ""})
-            // }
-        
- 
-        // console.log("Response token: " + response.token)
-        // console.log("Response: " + response.ok)
-       
       });
     }
   };
