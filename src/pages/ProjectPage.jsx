@@ -70,15 +70,7 @@ function ProjectPage() {
 
             </div>
             )
-        } else {
-            return (
-                
-                <Link to={myLink}>Edit</Link>
-                // <button type="submit" onClick={handleEdit}>
-                //     Edit Draft
-                // </button>
-            )
-        }
+        } 
     }
 
     
@@ -134,9 +126,9 @@ function ProjectPage() {
 
 
                 
-                <div className="centered">
+                <div className="centered flexbox-container">
                     <PublishConfirm id = {id} />
-                    <Link to=""><button className="btn-small">Edit</button></Link>
+                    <Link to={myLink}><button className="btn-small">Edit Project</button></Link>
                     <DeleteConfirm id = {id} type="project" />
                 </div>
                 

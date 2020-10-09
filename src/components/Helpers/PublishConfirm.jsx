@@ -30,10 +30,12 @@ function PublishConfirm(props) {
 
     return (
         <div>
-            <button className="btn" onClick={() => {setPublishConfirm(true)}}>Publish</button> 
             {publishConfirm && <p >Are you sure you want to publish this? You won't be able to edit it once it is published</p>}            
-            {publishConfirm && <button className="btn-50" onClick={publishProject}>Confirm</button>}
-            {publishConfirm && <button className="btn-50" onClick={() => {setPublishConfirm(false)}}>Cancel</button>}
+            {publishConfirm && <button className="mr-10 btn-small btn-warning" onClick={publishProject}>Confirm</button>}
+            {publishConfirm && <button className="btn-small" onClick={() => {setPublishConfirm(false)}}>Cancel</button>}
+            {publishConfirm && <br></br>}
+            {!publishConfirm && <button className="btn-small" onClick={() => {setPublishConfirm(true)}}>Publish</button>}
+
         </div>
     )
 

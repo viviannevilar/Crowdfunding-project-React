@@ -32,7 +32,8 @@ function Nav() {
                     
                     <ul className="nav-tabs">
                         <li><Link to="/">Home</Link></li>
-                        {isLoggedIn && <li><Link to="/createproject"><div className="block">Create Project</div></Link></li>}
+                        {!isLoggedIn && <li><Link to="/register/"><div className="block">Register</div></Link></li>}
+                        {isLoggedIn && <li><Link to="/createproject/"><div className="block">Create Project</div></Link></li>}
                         {isLoggedIn && <li><Link to={profile}><div className="block">Profile</div></Link></li>}
                         {/* <li><Link to="/createproject">Create Project</Link></li> */}
                         <li><LoginControl /></li>

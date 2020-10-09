@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom"
 
 import "./NewProjectForm.css"
@@ -19,7 +19,7 @@ function NewProjectForm() {
 
     const history = useHistory();
     const [errorMessage, setErrorMessage] = useState(null)
-    const [allOk, setAllOk] = useState(false)
+    const [newProjectId, setNewProjectId] = useState()
 
     //methods
     const handleChange = (e) => {
@@ -40,6 +40,16 @@ function NewProjectForm() {
             }));
     }
 
+    //when you get a newProjectId, if it is a number (project id number), take you to the preview of the project
+    useEffect(() => {
+        if (!isNaN(newProjectId)) {
+            const projectPath = "/project/" + newProjectId + "/"
+            history.push(projectPath)
+        }
+    }, [newProjectId]);
+
+
+
     const postData = async () => {
         let token = window.localStorage.getItem("token");
 
@@ -52,8 +62,6 @@ function NewProjectForm() {
             },
             body: JSON.stringify(projectData),
         });
-        setAllOk(response.ok)
-        console.log("response.ok: ", response.ok)
         return response.json();
     };
 
@@ -69,16 +77,10 @@ function NewProjectForm() {
             projectData.category
         ) {
             postData().then((response) => {
-                const newProjectId = response.id
-                const projectPath = "/project/" + newProjectId + "/"
-                if (!allOk) {
-                    setErrorMessage(response[Object.keys(response)[0]])
-                } else {
-                    history.push(projectPath)
-                }
-
+                setErrorMessage(response[Object.keys(response)[0]])
+                setNewProjectId(response.id)
             })
-            
+          
         } else {
             setErrorMessage("You need to fill in all fields")
         }
