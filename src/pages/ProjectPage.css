@@ -78,14 +78,6 @@ img.white-background {
 }
 
 
-.h1-background {
-    color: var(--dark-color);
-    border-bottom: 8px solid var(--primary-color);
-    padding: 10px;
-    margin-bottom: 10px;
-    
-
-}
 
 
 /* --------------------------------------------------------------------- */

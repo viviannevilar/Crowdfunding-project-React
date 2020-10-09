@@ -58,4 +58,28 @@ header h1 {
 
 .btn-small {
     padding: 10px;
+    border-radius: 5px;
+    background: #3db395;
+}
+
+.btn-small:hover {
+    border-radius: 5px;
+    background: #49c1a2;
+}
+.btn-warning {
+    background: #d11a2a;
+}
+
+.btn-warning:hover{
+    background: #e63847;
+}
+
+
+
+
+.h1-title {
+    color: var(--dark-color);
+    border-bottom: 8px solid var(--primary-color);
+    padding: 10px;
+    margin-bottom: 10px;
 }

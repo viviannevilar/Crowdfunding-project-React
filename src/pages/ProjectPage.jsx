@@ -18,7 +18,7 @@ function ProjectPage() {
 
     const [isLoading, setIsLoading] = useState(true)
     const [noProject, setNoProject] = useState(false)
-    const [allOK, setAllOk] = useState(false)
+
 
 
     const [projError, setProjError] = useState()
@@ -82,17 +82,17 @@ function ProjectPage() {
     }
 
     
-    function handleEdit() {
-        const myLink = "/project/" + {id} + "/edit/"
+    // function handleEdit() {
+    //     const myLink = "/project/" + {id} + "/edit/"
      
-     };
+    //  };
 
 
 
     if (isLoading) {
         return (
             <div className="white-background">
-                <img src={"https://i.imgur.com/3BOX1wi.gif"}/>
+                <img alt="" src={"https://i.imgur.com/3BOX1wi.gif"}/>
             </div>
         )
     } else if (noProject === true) {
@@ -108,10 +108,10 @@ function ProjectPage() {
             </div>
         )
 
-    } else if (projectData.pub_date === null && projectData.owner == username ) {
+    } else if (projectData.pub_date === null && projectData.owner === username ) {
         return (
             <div>
-                <h1 className="centered h1-background">{projectData.title}</h1>
+                <h1 className="centered h1-title">{projectData.title}</h1>
                 <Icons category={projectData.category} />
                 <h2 className="centered error">Preview</h2>
                 <div className="project-main-info">
@@ -133,8 +133,13 @@ function ProjectPage() {
                 {/* <h3>{`Status: ${projectData.is_open}`}</h3>       */}
 
 
-                <PublishConfirm id = {id} />
-                <DeleteConfirm id = {id} type="project" />
+                
+                <div className="centered">
+                    <PublishConfirm id = {id} />
+                    <Link to=""><button className="btn-small">Edit</button></Link>
+                    <DeleteConfirm id = {id} type="project" />
+                </div>
+                
 
              </div>
         )
@@ -142,7 +147,7 @@ function ProjectPage() {
         return (
             <div className="outer-container">
 
-                <h1 className="centered h1-background">{projectData.title}</h1>     
+                <h1 className="centered h1-title">{projectData.title}</h1>     
                 <Icons category={projectData.category} />        
                 <div className="project-main-info">
                     <div className="project-img">
@@ -160,8 +165,9 @@ function ProjectPage() {
                 <div className="project-description">
                     {projectData.description}
                 </div>
-                <DeleteConfirm id = {id} />
-
+                <div className="centered">
+                    <DeleteConfirm id = {id} type="project"  />
+                </div>
                 {/* <h3>{`Status: ${projectData.is_open}`}</h3>       */}
 
                 {Pledges()}

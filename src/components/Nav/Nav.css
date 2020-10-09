@@ -27,11 +27,21 @@
     
 }
 
-.nav-tabs {
+.nav-tabs, .h1-navbar{
     display: flex;
     align-items: center;
+    justify-content: center;
+}
 
+.h1-navbar h1 {
+    margin: auto;
+    padding: 12.5px;
 
+}
+
+.h1-navbar h1:hover {
+    background: #444;
+    color: #f7c08a;
 }
 
 #navbar ul li:hover {

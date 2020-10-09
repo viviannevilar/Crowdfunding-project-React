@@ -72,11 +72,11 @@ function UserPage() {
     } else {
         return (
             <div className="outer-container">
-                <h1 className="centered">{userData.username}</h1>
+                <h1 className="centered h1-title">{userData.username}</h1>
 
                 <div className="centered buttons">
 
-                    <Link to={`/user/${username}/edit/`}><button className="mr-10 btn-small">Edit Profile</button></Link>
+                    {/* <Link to={`/user/${username}/edit/`}><button className="mr-10 btn-small">Edit Profile</button></Link> */}
                     <DeleteConfirm id = {username} type="user" />
 
                 </div>
@@ -121,12 +121,13 @@ function ListProject({ items, fallback }) {
     } else {
       return items.map((item, key) => {
             return (
-                <ProjectCard key={key} projectData={item} image={item.image} />
+                <ProjectCard key={key} projectData={item} image={item.image} showdrafts={false}/>
             )
       })
     }
   }
 
+  // className={` ${(item.pub_date === null) ? "dont-show" : ""}`}
 
   function ListDraft({ items, fallback }) {
     if (!items || items.length === 0) {
@@ -134,7 +135,7 @@ function ListProject({ items, fallback }) {
     } else {
       return items.map((item, key) => {
             return (
-                <ProjectCard key={key} projectData={item} image={item.image} />
+                <ProjectCard  key={key} projectData={item} image={item.image} showdrafts={true} />
             )
       })
     }

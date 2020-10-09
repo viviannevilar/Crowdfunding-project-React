@@ -5,7 +5,7 @@ import "./ProjectCard.css"
 
 function ProjectCard(props) {
     //variables
-    const { projectData, image } = props;
+    const { projectData, image, showdrafts } = props;
     let completed
     let display = false
 
@@ -17,7 +17,17 @@ function ProjectCard(props) {
         display = true
     }
 
-    
+    let myClassName
+    if (showdrafts && projectData.pub_date === null) {
+        myClassName = "project-card"
+    } else if (showdrafts && projectData.pub_date !== null) {
+        myClassName = "project-card dont-show"
+    } else if (!showdrafts && projectData.pub_date === null) {
+        myClassName = "project-card dont-show"
+    } else {
+        myClassName = "project-card"
+    }
+   
 
     function copyLink() {
 
@@ -28,12 +38,12 @@ function ProjectCard(props) {
         // /* Alert the copied text */
         // alert("Copied the text: " + linkText.value);
       }
-
-
-
+      
+ 
     //template
+
     return (
-        <div className="project-card">
+        <div className={myClassName}>
             <Link to={`/project/${projectData.id}`}>
                 <div className="pc-img-container">
                     <img alt="" className="project-img" src={image} />

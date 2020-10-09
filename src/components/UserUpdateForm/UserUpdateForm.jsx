@@ -14,8 +14,6 @@ function UserUpdateForm() {
 
     const history = useHistory();
 
-    const [errorMessage, setErrorMessage] = useState(null)
-
     //const history = useHistory();
     const linkTo = "/user/" + username + "/"
     //methods
@@ -47,16 +45,7 @@ function UserUpdateForm() {
         [id]: value,
         }));
     };
-
-    const onChangeValue = (event) => {
-        const { id, value } = event.target
-
-        setUserData((prevUserData) => ({
-            ...prevUserData,
-            [id]: value,
-            }));
-    }
-    
+   
 
     const postData = async () => {
         let token = window.localStorage.getItem("token");
@@ -121,7 +110,7 @@ function UserUpdateForm() {
                 </button>
             </form>
 
-        {errorMessage != null ? <p>{errorMessage}</p> : null}
+        
         </div>
     );
     }

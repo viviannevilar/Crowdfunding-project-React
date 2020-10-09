@@ -6,7 +6,6 @@ import "./Nav.css"
 
 function Nav() {
     //variables
-    //const { username } = props
     const location = useLocation()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [profile, setProfile] = useState("/")
@@ -14,7 +13,6 @@ function Nav() {
     useEffect(() => {
         let username = window.localStorage.getItem("username")
         setProfile("/user/" + username + "/")
-        console.log("thisUsername")
         if (username) {
             setIsLoggedIn(true)
         } else {

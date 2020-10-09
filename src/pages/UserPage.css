@@ -14,6 +14,8 @@
 
 .prof-container-info {
     width: 65%;
+    border: 2px solid var(--dark-color);
+    margin-left: 20px;
 }
 
 .prof-container-img img {

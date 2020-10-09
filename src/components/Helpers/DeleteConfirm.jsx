@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 
 
 
@@ -28,7 +28,7 @@ function DeleteConfirm(props) {
         e.preventDefault();
         let token = window.localStorage.getItem("token");
     
-        const response = await fetch(`${process.env.REACT_APP_API_URL}${urlAddress}/`, {
+        fetch(`${process.env.REACT_APP_API_URL}${urlAddress}/`, {
             method: "delete",
             headers: {
                 "Content-Type": "application/json",
@@ -46,10 +46,12 @@ function DeleteConfirm(props) {
 
     return (
         <div>
-            <button className="delete btn-small" onClick={() => {setDeleteConfirm(true)}}>Delete {otherType}</button> 
+            {(otherType === "Account") && <Link to={`/user/${id}/edit/`}><button className="mr-10 btn-small">Edit Profile</button></Link>}
+            <button className="delete btn-small btn-warning" onClick={() => {setDeleteConfirm(true)}}>Delete {otherType}</button> 
+
             {deleteConfirm && <p >Are you sure you want to delete this {type}? You won't be able to recover it once you delete it</p>}   
-            {deleteConfirm && <button className="btn-50" onClick={deleteFunction}>Confirm</button>}
-            {deleteConfirm && <button className="btn-50" onClick={() => {setDeleteConfirm(false)}}>Cancel</button>}
+            {deleteConfirm && <button className="mr-10 btn-50 btn-small btn-warning" onClick={deleteFunction}>Confirm</button>}
+            {deleteConfirm && <button className="btn-50 btn-small" onClick={() => {setDeleteConfirm(false)}}>Cancel</button>}
         </div>
     )
 

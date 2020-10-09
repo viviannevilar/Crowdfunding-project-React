@@ -46,7 +46,7 @@ function HomePage() {
             <div className="wrapper">
                 <div className="project-list">
                     {projectList.map((projectData,key) => {
-                        return <ProjectCard key={key} projectData={projectData} image={projectData.image} />;
+                        return <ProjectCard key={key} projectData={projectData} image={projectData.image} showdrafts={false}/>;
                     })}
                 </div>
             </div>

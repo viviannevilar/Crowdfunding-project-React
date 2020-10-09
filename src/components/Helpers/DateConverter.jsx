@@ -5,11 +5,7 @@ function convertDateTime(isoDate, duration) {
     if (isoDate == null) {
         return null
     } else {
-        if (duration == null) {
-            const dur = 0
-        } else {
-            const dur = duration
-        }
+
         const date = new Date(isoDate);
 
         date.setDate(date.getDate() + duration)

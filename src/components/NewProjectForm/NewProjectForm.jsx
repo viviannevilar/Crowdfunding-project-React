@@ -53,6 +53,7 @@ function NewProjectForm() {
             body: JSON.stringify(projectData),
         });
         setAllOk(response.ok)
+        console.log("response.ok: ", response.ok)
         return response.json();
     };
 
