@@ -7,11 +7,16 @@ function ProjectCard(props) {
     //variables
     const { projectData, image } = props;
     let completed
+    let display = false
 
+    console.log("goal: ", projectData.goal)
+    console.log("tot_donated: ", projectData.tot_donated)
     if (projectData.tot_donated === 0) {
         completed = 0
-    } else {
+        display = true
+    } else if (projectData.tot_donated != null) {
         completed = Math.round(projectData.goal/projectData.tot_donated)
+        display = true
     }
 
     
@@ -38,7 +43,8 @@ function ProjectCard(props) {
                 <h3>{projectData.title}</h3>
 
             <div className="progressBarContainer">
-                <ProgressBar completed={completed} goal={projectData.goal}/>
+                {display && <ProgressBar completed={completed} goal={projectData.goal}/>}
+                
               </div>
 
             </Link>

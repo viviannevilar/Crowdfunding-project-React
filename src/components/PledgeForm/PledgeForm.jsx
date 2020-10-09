@@ -39,18 +39,9 @@ function PledgeForm(props) {
             }));
       }
 
-    // const onChangeValue = (event) => {
-    //     const { id, value } = event.target
-    //     console.log(event.target.valueAsNumber)
-    //     console.log(event.target)
-    //     setPledgeData((prevPledgeData) => ({
-    //         ...prevPledgeData,
-    //         [id]: value,
-    //         }));
-    // }
+
 
     useEffect(() => {
-        //console.log("All OK changed")
         if (allOk) {
             window.location.reload(false);
         }
@@ -73,7 +64,6 @@ function PledgeForm(props) {
         });
         console.log(response)
         setAllOk(response.ok)
-        //console.log("response.ok: ",response.ok)
         return response.json();
 
     };
@@ -95,7 +85,6 @@ function PledgeForm(props) {
                 console.log("allOK: ", allOk)
                 if (!allOk) {
                     setErrorMessage(response[Object.keys(response)[0]])
-
                 } else {
                     window.location.reload(false);
                     console.log("Why didn't it reload?!")

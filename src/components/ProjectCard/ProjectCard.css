@@ -52,3 +52,8 @@ button:active {
     font-weight: bold;
 }
 
+.project-card h3 {
+    font-size: 1.2em;
+    padding: 0;
+    color: var(--dark-color);
+}

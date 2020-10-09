@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import convertDateTime from "../components/Helpers/DateConverter"
 import DeleteConfirm from "../components/Helpers/DeleteConfirm"
+import ProjectCard from "../components/ProjectCard/ProjectCard"
 import "./UserPage.css"
 
 function UserPage() {
@@ -26,7 +27,7 @@ function UserPage() {
         if (thisUser === username) {
             return (
                 <div >
-                <h2 className="centered">Pledges</h2>
+                <h2 className="centered ">Pledges</h2>
                 <ListPledge items={userData.supporter_pledges} fallback={<p className="centered">You have made no pledges so far</p>} />
                 </div>
             )
@@ -39,8 +40,10 @@ function UserPage() {
         if (thisUser === username) {
             return (
                 <div >
-                <h2 className="centered">Drafts</h2>
-                <ListDraft items={userData.owner_projects} fallback={<p className="centered">No drafts to show</p>} />
+                    <h2 className="centered">Drafts</h2>
+                    <div className="project-list">
+                        <ListDraft items={userData.owner_projects} fallback={<p className="centered">No drafts to show</p>} />
+                    </div>
                 </div>
             )
         } else {
@@ -95,8 +98,15 @@ function UserPage() {
                 </div>       
             
             
-            <h2 className="centered">Projects</h2>
-                <ListProject items={userData.owner_projects} fallback={<p className="centered">No projects to show</p>} />
+            {/* <h2 className="centered">Projects</h2>
+                <ListProject items={userData.owner_projects} fallback={<p className="centered">No projects to show</p>} /> */}
+
+                <div className="wrapper">
+                    <h2 className="centered">Projects</h2>
+                    <div className="project-list">
+                    <ListProject items={userData.owner_projects} fallback={<p className="centered">No projects to show</p>} /> 
+                    </div>
+               </div>
 
             {drafts()}
 
@@ -110,24 +120,6 @@ function UserPage() {
 
 export default UserPage;
 
-// function ListProject({ items, fallback }) {
-//     if (!items || items.length === 0) {
-//       return fallback;
-//     } else {
-//       return items.map((item, key) => {
-//         return (
-//         <div key={key}> 
-//             <h3>{item.title}</h3>
-//             <p>{item.description}</p> 
-//         </div>
-//         )
-//       });
-//     }
-//   }
-
-
-//
-
 
 function ListProject({ items, fallback }) {
     if (!items || items.length === 0) {
@@ -135,14 +127,12 @@ function ListProject({ items, fallback }) {
     } else {
       return items.map((item, key) => {
             return (
-            <div key={key} className={` ${(item.pub_date === null) ? "dont-show" : ""}`}> 
-                <h3>{item.title}</h3>
-                <p>{item.description}</p> 
-            </div>
+                <ProjectCard key={key} projectData={item} image={item.image} />
             )
-      });
+      })
     }
   }
+
 
   function ListDraft({ items, fallback }) {
     if (!items || items.length === 0) {
@@ -150,15 +140,15 @@ function ListProject({ items, fallback }) {
     } else {
       return items.map((item, key) => {
             return (
-            <div key={key} className={` ${(item.pub_date === null) ? "" : "dont-show"}`}> 
-                <h3>{item.title}</h3>
-                <p>{item.description}</p> 
-            </div>
+                <ProjectCard key={key} projectData={item} image={item.image} />
             )
-      });
+      })
     }
   }
 
+
+
+//    
   function ListPledge({ items, fallback }) {
     if (!items || items.length === 0) {
       return fallback;

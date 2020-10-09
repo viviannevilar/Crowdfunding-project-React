@@ -8,7 +8,7 @@
     
 .fillerStyles {
     height: 100%;
-    background-color: #6a1b9a;
+    background-color: var(--primary-color);
     border-radius: inherit;
     text-align: right;
     transition: width 1s ease-in-out;
@@ -30,4 +30,5 @@
 
 .labelStyles {
     text-align: center;
+    color: var(--dark-color);
 }

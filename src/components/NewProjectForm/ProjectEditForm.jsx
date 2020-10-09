@@ -146,10 +146,7 @@ function ProjectEditForm() {
     if (isOwner(projectData.owner) && isDraft(projectData.pub_date)) {
         return (
             <div className="form-wrap">
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
+                <h1>Edit Project</h1>
                 <form>
                     <div className="form-group">
                         <label htmlFor="title">Title</label>
@@ -265,7 +262,7 @@ function ProjectEditForm() {
                    {/* <button onClick={publishProject}>Publish</button>  */}
                 </form>
     
-            {errorMessage != null ? <p>{errorMessage}</p> : null}
+            {errorMessage != null ? <p className="error">{errorMessage}</p> : null}
             </div>
         );
 
@@ -275,17 +272,15 @@ function ProjectEditForm() {
         console.log(isDraft(projectData.pub_date))
 
         return (
-            <div>
-                <br></br>
-                <h3>You are not this project's owner!</h3>
+            <div className="blankPage">
+                <h1>You are not this project's owner!</h1>
             </div>
         )
     } else {
         return (
             
-            <div>
-                <br></br>
-                <h3>This project has been published and can no longer be edited!</h3>
+            <div className="blankPage">
+                 <h1>This project has been published and can no longer be edited!</h1>
             </div>
         )
     }

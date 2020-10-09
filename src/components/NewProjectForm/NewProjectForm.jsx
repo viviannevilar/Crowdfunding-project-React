@@ -19,6 +19,7 @@ function NewProjectForm() {
 
     const history = useHistory();
     const [errorMessage, setErrorMessage] = useState(null)
+    const [allOk, setAllOk] = useState(false)
 
     //const history = useHistory();
 
@@ -55,6 +56,7 @@ function NewProjectForm() {
             body: JSON.stringify(projectData),
         });
         console.log(response)
+        setAllOk(response.ok)
         return response.json();
     };
 
@@ -77,9 +79,16 @@ function NewProjectForm() {
                 const newProjectId = response.id
                 console.log("This project id: ", newProjectId);
                 const projectPath = "/project/" + newProjectId + "/"
-                history.push(projectPath)
+                if (!allOk) {
+                    setErrorMessage(response[Object.keys(response)[0]])
+                } else {
+                    history.push(projectPath)
+                }
+
             })
             
+        } else {
+            setErrorMessage("You need to fill in all fields")
         }
 
     };
@@ -88,10 +97,8 @@ function NewProjectForm() {
 
     return (
         <div className="form-wrap">
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+            <h1>New Project</h1>
+
             <form>
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
@@ -194,7 +201,7 @@ function NewProjectForm() {
                 {/* <button onClick={() => {if(window.confirm('Delete the item?')){confirmed()}}}>Confirm dialog</button> */}
                 </form>
 
-        {errorMessage != null ? <p>{errorMessage}</p> : null}
+        {errorMessage != null ? <p className="error">{errorMessage}</p> : null}
         </div>
     );
     }

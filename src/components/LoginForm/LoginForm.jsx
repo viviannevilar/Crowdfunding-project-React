@@ -91,7 +91,7 @@ function LoginForm() {
       </button>
     </form>
 
-    {errorMessage != null ? <p>{errorMessage}</p> : null}
+    {errorMessage != null ? <p className="error">{errorMessage}</p> : null}
     </div>
   );
 }

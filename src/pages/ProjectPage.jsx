@@ -18,6 +18,7 @@ function ProjectPage() {
 
     const [isLoading, setIsLoading] = useState(true)
     const [noProject, setNoProject] = useState(false)
+    const [allOK, setAllOk] = useState(false)
 
 
     const [projError, setProjError] = useState()
