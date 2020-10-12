@@ -48,7 +48,7 @@ function DeleteConfirm(props) {
         <div>
             {(otherType === "Account") && <Link to={`/user/${id}/edit/`}><button className="mr-10 btn-small">Edit Profile</button></Link>}
 
-            {deleteConfirm && <p >Are you sure you want to delete this {type}? You won't be able to recover it once you delete it</p>}   
+            {deleteConfirm && <p >Are you sure you want to delete this {otherType}? You won't be able to recover it once you delete it</p>}   
             {deleteConfirm && <button className="mr-10 btn-50 btn-small btn-warning" onClick={deleteFunction}>Confirm</button>}
             {deleteConfirm && <button className="btn-50 btn-small" onClick={() => {setDeleteConfirm(false)}}>Cancel</button>}
 
