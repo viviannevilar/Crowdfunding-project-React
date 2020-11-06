@@ -66,7 +66,10 @@ function HomePage() {
 
             {/* while fetching data, show loading gif */}
             {/* if data has been fetched, show project cards */}
-            {(isLoading) ? <IsLoading /> : <ProjectMap projectList={projectList} /> }
+            {(isLoading) 
+                ? <IsLoading /> 
+                : <ProjectMap projectList={projectList} /> 
+            }
 
         </div> 
     )
