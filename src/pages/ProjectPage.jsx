@@ -58,6 +58,8 @@ function ProjectPage() {
 
     }, [id]);
 
+
+    // NEED TO CHANGE THIS!!!! Should be able to see pledges even if project is closed
     function Pledges() {
         if (projectData.is_open) {
             return (

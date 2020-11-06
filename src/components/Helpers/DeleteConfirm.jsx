@@ -28,10 +28,9 @@ function DeleteConfirm(props) {
         e.preventDefault();
         let token = window.localStorage.getItem("token");
     
-        fetch(`${process.env.REACT_APP_API_URL}${urlAddress}/`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}${urlAddress}/`, {
             method: "delete",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: `Token ${token}`,
             },
         });

@@ -29,8 +29,7 @@ function ProjectEditForm() {
                 "Content-Type": "application/json",
                 Authorization: `Token ${token}`,
             }
-        }
-        )
+        })
         .then((results) => {
             return results.json();
         })
