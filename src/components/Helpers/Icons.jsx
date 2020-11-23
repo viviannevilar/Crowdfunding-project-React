@@ -5,6 +5,10 @@ import "./Icons.css"
 function Icons(props) {
     const { category } = props
 
+   // think about doing this! Is it possible? Is it better than my way? Is my way a "bad habit" from another programming language? Meaning, something good in another language may not be good in this one.
+   // category === "Shelter" ? "category" : category === "Individual" ? 
+
+
     if (category === "Shelter") {
         return (
             <div className="category-icon">

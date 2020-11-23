@@ -94,6 +94,7 @@ function NewProjectForm() {
             <h1>New Project</h1>
 
             <form>
+               
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
                     <input

@@ -1,11 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
-//import { Link } from "react-router-dom"
 import "./App.css"
 import Nav from "./components/Nav/Nav"
 import ProjectPage from "./pages/ProjectPage"
 import HomePage from "./pages/HomePage"
-//import Header from "./components/Header/Header"
+
 import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
 import UserPage from "./pages/UserPage"
@@ -62,6 +61,9 @@ function App() {
                     <Route exact path="/">
                         <HomePage />
                     </Route>
+
+                    <Route path="*" component={NotFoundPage} />
+
                 </Switch>
                 {/* <Footer /> */}
             </div>
